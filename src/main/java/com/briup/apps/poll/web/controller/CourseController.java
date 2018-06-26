@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,5 +31,53 @@ public class CourseController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
+	@GetMapping("findById")
+	public MsgResponse findById(long id) {
+		try {
+			Course list = courseService.findById(id);
+			//返回成功信息
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	@GetMapping("findByKeywords")
+	public MsgResponse query(String keywords) {
+		try {
+			List<Course> list = courseService.query(keywords);
+			//返回成功信息
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	@PostMapping("saveCourse")
+	public MsgResponse save(Course course) {
+		try {
+			courseService.saveOrUpdate(course);
+			//返回成功信息
+			return MsgResponse.success("success", course);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	@PostMapping("updateCourse")
+	public MsgResponse Update(Course course) {
+		try {
+			courseService.saveOrUpdate(course);
+			//返回成功信息
+			return MsgResponse.success("success", course);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
 }
