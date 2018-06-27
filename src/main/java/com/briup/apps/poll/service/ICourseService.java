@@ -16,6 +16,6 @@ public interface ICourseService {
 	
 	void deleteById(long id) throws Exception;
 	
-	void batchDelete(List<Long> ids) throws Exception;
+	void batchDelete(Long ids[]) throws Exception;
 	
 }

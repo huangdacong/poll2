@@ -79,5 +79,29 @@ public class CourseController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+	@GetMapping("deleteCourseById")
+	public MsgResponse deleteById(long id) {
+		try {
+			courseService.deleteById(id);
+			//返回成功信息
+			return MsgResponse.success("success", id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	@GetMapping("batchDeleteCourse")
+	public MsgResponse batchDelete(Long[] ids) {
+		try {
+			courseService.batchDelete(ids);
+			//返回成功信息
+			return MsgResponse.success("success",ids);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	
 }
