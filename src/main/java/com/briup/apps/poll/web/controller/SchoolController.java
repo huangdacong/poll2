@@ -8,21 +8,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.apps.poll.bean.Course;
-import com.briup.apps.poll.service.ICourseService;
+import com.briup.apps.poll.bean.School;
+import com.briup.apps.poll.service.ISchoolService;
 import com.briup.apps.poll.util.MsgResponse;
 
-import io.swagger.annotations.Api;
-@Api(description="课程相关接口")
 @RestController
-@RequestMapping("/course")
-public class CourseController {
+@RequestMapping("/school")
+public class SchoolController {
 	@Autowired
-	private ICourseService courseService;
-	@GetMapping("findAllCourse")
-	public MsgResponse findAllCourse() {
+	private ISchoolService schoolService;
+	@GetMapping("findAllSchool")
+	public MsgResponse findAllSchool() {
 		try {
-			List<Course> list = courseService.findAll();
+			List<School> list = schoolService.findAll();
 			//返回成功信息
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
@@ -34,7 +32,7 @@ public class CourseController {
 	@GetMapping("findById")
 	public MsgResponse findById(long id) {
 		try {
-			Course list = courseService.findById(id);
+			School list = schoolService.findById(id);
 			//返回成功信息
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
@@ -46,7 +44,7 @@ public class CourseController {
 	@GetMapping("findByKeywords")
 	public MsgResponse query(String keywords) {
 		try {
-			List<Course> list = courseService.query(keywords);
+			List<School> list = schoolService.query(keywords);
 			//返回成功信息
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
@@ -55,34 +53,34 @@ public class CourseController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@PostMapping("saveCourse")
-	public MsgResponse save(Course course) {
+	@PostMapping("saveSchool")
+	public MsgResponse save(School school) {
 		try {
-			courseService.saveOrUpdate(course);
+			schoolService.saveOrUpdate(school);
 			//返回成功信息
-			return MsgResponse.success("success", course);
+			return MsgResponse.success("success", school);
 		} catch (Exception e) {
 			e.printStackTrace();
 			//返回失败信息
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@PostMapping("updateCourse")
-	public MsgResponse Update(Course course) {
+	@PostMapping("updateSchool")
+	public MsgResponse Update(School school) {
 		try {
-			courseService.saveOrUpdate(course);
+			schoolService.saveOrUpdate(school);
 			//返回成功信息
-			return MsgResponse.success("success", course);
+			return MsgResponse.success("success", school);
 		} catch (Exception e) {
 			e.printStackTrace();
 			//返回失败信息
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@GetMapping("deleteCourseById")
+	@GetMapping("deleteSchoolById")
 	public MsgResponse deleteById(long id) {
 		try {
-			courseService.deleteById(id);
+			schoolService.deleteById(id);
 			//返回成功信息
 			return MsgResponse.success("success", id);
 		} catch (Exception e) {
@@ -91,17 +89,16 @@ public class CourseController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@GetMapping("batchDeleteCourse")
+	@GetMapping("batchDeleteSchool")
 	public MsgResponse batchDelete(Long[] ids) {
 		try {
-			courseService.batchDelete(ids);
+			schoolService.batchDelete(ids);
 			//返回成功信息
-			return MsgResponse.success("success",ids);
+			return MsgResponse.success("success", ids);
 		} catch (Exception e) {
 			e.printStackTrace();
 			//返回失败信息
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
 }
