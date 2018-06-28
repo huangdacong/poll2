@@ -75,7 +75,7 @@ public class QuestionServiceImpl implements IQuestionService{
 			//2.重新添加选项
 			long questionId = question.getId();
 			for(Options option : options){
-				//为每个option设置question——id					
+				//为每个option设置question—id					
 				option.setQuestionId(questionId);
 				//保存选项
 				optionsMapper.insert(option);					
